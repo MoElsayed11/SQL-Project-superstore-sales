@@ -1,0 +1,42 @@
+/* ============================================================
+   Project: Superstore Data Warehouse
+   Database: SuperstoreDW
+   Architecture: Medallion (Bronze, Silver, Gold)
+   Platform: SQL Server
+   ============================================================ */
+
+-- ============================================================
+-- Step 0: Create Data Warehouse Database
+-- Purpose: Central database to store all layers
+-- ============================================================
+CREATE DATABASE SuperstoreDW;
+GO
+
+-- Switch context to the new database
+USE SuperstoreDW;
+GO
+
+-- ============================================================
+-- Step 1: Create Schemas for Medallion Architecture
+-- Bronze: Raw ingested data (as-is)
+-- Silver: Cleaned, validated, standardized data
+-- Gold: Business-ready data (Star Schema)
+-- ============================================================
+
+-- Bronze layer schema (raw data)
+CREATE SCHEMA bronze;
+GO
+
+-- Silver layer schema (cleaned data)
+CREATE SCHEMA silver;
+GO
+
+-- Gold layer schema (analytics & reporting)
+CREATE SCHEMA gold;
+GO
+
+-- ============================================================
+-- Validation: Check created schemas
+-- ============================================================
+SELECT name 
+FROM sys.schemas;
